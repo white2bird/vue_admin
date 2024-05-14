@@ -1,7 +1,7 @@
 <template>
 	<div style="width: 100%;"> 
 	  <div style="text-align: center;  padding-top: 10px; font-size: 23px; float: left;">
-		  <span>xxxx系统欢迎你</span>
+		  <span>地震预测后台管理</span>
 	  </div>
 	  <div class="toolbar" style="margin-right: 5px; float: right; height: 100%; padding-top: 20px; text-align: center; ">
 		<span>{{store.getters.getName}}</span>
