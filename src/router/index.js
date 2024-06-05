@@ -3,6 +3,7 @@ import { defineAsyncComponent } from "vue"
 import Login from "../components/Login.vue"
 import Index from "../components/Index.vue"
 import Info from "../components/Info.vue"
+import NotFound from "../components/NotFound.vue"
 import Main from "../components/Main.vue"
 import Manage from "../components/Manage.vue"
 import store from '../store/index.js'
@@ -30,8 +31,14 @@ const routes = [
 						name: 'info',
 						component: Info
 					},
+					{
+					        path: '/:pathMatch(.*)',
+					        name: '404',
+					        component: NotFound
+					}
 		]
-	}
+	},
+	
 	
 ]
 

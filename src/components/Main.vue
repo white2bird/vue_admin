@@ -5,7 +5,7 @@
 		  <el-table-column prop="id" label="用户id" width="100" />
 		  <el-table-column prop="username" label="用户昵称" width="160" />
 		  <el-table-column prop="realName" label="真实姓名" width="160"/>
-		  <el-table-column prop="gender" label="性别" width="160">
+		 <!-- <el-table-column prop="gender" label="性别" width="160">
 			<template #default="scope">
 			  <el-tag
 				:type="scope.row.gender === 1 ? 'primary' : 'success'"
@@ -13,8 +13,8 @@
 				>{{ scope.row.gender === 1 ? '男' : '女' }}</el-tag
 			  >
 			</template>
-		  </el-table-column>
-		  <el-table-column prop="superAdmin" label="是否管理员" width="160">
+		  </el-table-column> -->
+<!-- 		  <el-table-column prop="superAdmin" label="是否管理员" width="160">
 			  <template #default="scope">
 				<el-tag
 				:type="scope.row.superAdmin === 1 ? 'danger' : 'info'"
@@ -22,14 +22,15 @@
 				>{{ scope.row.superAdmin === 1 ? '是' : '否' }}</el-tag
 				>
 			  </template>
-		  </el-table-column>
+		  </el-table-column> -->
 		  <el-table-column prop="mobile" label="手机号" width="160"/>
-		  <el-table-column prop="email" label="邮箱" width="160"/>
-		  <el-table-column prop="operate" label="操作" width="300">
+		  <el-table-column prop="createDate" label="创建时间" width="160"/>
+		  <el-table-column prop="operate" label="操作" width="350">
 			  <template #default="scope">
 				  <el-button type="success" @click="updateUser(scope.row)">编辑</el-button>
 				  <el-button type="danger" @click="deleteUser(scope.row.id)">删除</el-button>
-				   <el-button type="danger" size="mini" @click="updateRole(scope.row.id)">编辑角色</el-button>
+				  <el-button type="danger" size="mini" @click="updateRole(scope.row.id)">编辑角色</el-button>
+				  <el-button type="success" size="mini" @click="look(scope.row.id)">查看</el-button>
 			  </template>
 		  </el-table-column>
 		</el-table>
@@ -115,20 +116,20 @@
 			  	</el-col>
 			  </el-form-item>
 			  
-			  <el-form-item label="性别">
+			<!--  <el-form-item label="性别">
 				<el-radio-group v-model="form.gender">
 				  <el-radio value="0">女</el-radio>
 				  <el-radio value="1">男</el-radio>
 				</el-radio-group>
 			  </el-form-item>
+			  -->
 			  
-			  
-			  <el-form-item label="是否管理员">
+			 <!-- <el-form-item label="是否管理员">
 				<el-radio-group v-model="form.superAdmin">
 				  <el-radio value="0">否</el-radio>
 				  <el-radio value="1">是</el-radio>
 				</el-radio-group>
-			  </el-form-item>
+			  </el-form-item> -->
 			  
 			  <el-form-item label="手机">
 			    <el-col :span="15">
@@ -136,11 +137,11 @@
 			  	</el-col>
 			  </el-form-item>
 			  
-			  <el-form-item label="邮箱">
+			 <!-- <el-form-item label="邮箱">
 			    <el-col :span="15">
 			  		<el-input v-model="form.email" />
 			  	</el-col>
-			  </el-form-item>
+			  </el-form-item> -->
 		     
 		    </el-form>
 		  
@@ -161,6 +162,9 @@
 	import { reactive } from 'vue'
 	import { ElMessageBox,ElMessage } from 'element-plus'
 	import { ref,getCurrentInstance } from 'vue'
+	import { useRouter } from "vue-router"
+	
+	const route = useRouter()
 
 	let tableData = ref([])
 	
@@ -217,6 +221,17 @@
 	  const checkedCount = value.length
 	  checkAll.value = checkedCount === cities.value.length
 	  isIndeterminate.value = checkedCount > 0 && checkedCount < cities.value.length
+	}
+	
+	const look = (id)=>{
+		console.log('look', id)
+		route.push({
+			
+			path: "/userCollect",
+			query: {
+				id: id,
+			},
+		})
 	}
 	
 	const updateSubmitRule = ()=>{
