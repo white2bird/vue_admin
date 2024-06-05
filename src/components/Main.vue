@@ -49,7 +49,7 @@
 			
 		<el-dialog
 			v-model="updateRoleShow"
-			title="更改权限"
+			title="更改角色"
 			width="500"
 			:before-close="handleCloseRole"
 		  >
